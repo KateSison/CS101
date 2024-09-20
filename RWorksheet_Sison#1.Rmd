@@ -1,0 +1,113 @@
+---
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+#1
+age <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 42, 53, 41, 51, 35, 24, 33, 41)
+length(age)
+
+#2
+reciprocal_age <- 1 / age
+reciprocal_age
+
+#3
+new_age <- c(age, 0, age)
+new_age
+
+#4
+sorted_age <- sort(age)
+sorted_age
+
+#5
+min_age <- min(age)
+min_age
+
+max_age <- max(age)
+max_age
+
+#6
+data <- c(2.4, 2.8, 2.1, 2.5, 2.4, 2.2, 2.5, 2.3, 2.5, 2.3, 2.4, 2.7)
+length(data)
+
+#7
+doubled_data <- data * 2
+doubled_data
+
+#8
+seq_1_to_100 <- seq(1, 100)
+seq_1_to_100
+
+seq_20_to_60 <- seq(20, 60)
+seq_20_to_60
+
+mean_20_to_60 <- mean(seq_20_to_60)
+mean_20_to_60
+
+sum_51_to_91 <- sum(seq_51_to_91)
+sum_51_to_91
+
+integers <- seq(1, 1000)
+print(integers)
+
+length(seq_1_to_100)
+length(seq_20_to_60)
+length(seq_20_to_60)
+length(seq_51_to_91)
+
+total_data_points <- data_points_8_1 + data_points_8_2 + data_points_8_3 + data_points_8_4
+print(total_data_points)
+
+
+seq_1_to_1000 <- seq(1, 1000)
+seq_1_to_10 <- seq_1_to_1000[1:10]
+max_1_to_10 <- max(seq_1_to_10)
+max_1_to_10
+
+#9
+filtered_numbers <- Filter(function(i) { all(i %% c(3, 5, 7) != 0) }, seq(1, 100))
+filtered_numbers
+
+#10
+backward_seq <- seq(100, 1)
+backward_seq
+
+#11
+multiples_3_or_5 <- Filter(function(i) { i %% 3 == 0 || i %% 5 == 0 }, seq(1, 24))
+multiples_3_or_5
+
+sequence_10_to_11 <- 10:11
+data_points_10_to_11 <- length(sequence_10_to_11)
+print(data_points_10_to_11)
+
+data_points_10_to_11 <- length(sequence_10_to_11)
+print(data_points_10_to_11)
+
+
+#12
+x <- {0 + x + 5 + }
+
+#13
+x <- c(72, 86, 92, 63, 90, 89, 91, 2, 750)
+x[2]
+x[3]
+
+#14
+a <- c(1, 2, NA, 4, NA, 6, 7)
+a[is.na(a)] <- 999
+a
+
+#15
+name = readline(prompt="Input your name: ")
+
+age = readline(prompt="Input your age: ")
+
+print(paste("My name is", name, "and I am", age, "years old."))
+
+print(R.version.string)
+
+
+
+
+
