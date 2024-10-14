@@ -1,0 +1,97 @@
+---
+title: "RWorksheet_Sison#4."
+author: "Kathrina Casandra Sison"
+date: "2024-10-14"
+output: html_document
+---
+
+
+```{r}
+Shoe_Size <- c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5, 13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 8.5, 10.5, 8.5, 10.5, 11.0, 9.0, 13.0)
+Height <- c(66.0, 68.0, 64.5, 65.0, 70.0, 64.0, 70.0, 71.0, 72.0, 64.0, 74.75, 67.0, 71.0, 71.0, 77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 69.0, 72.0, 70.0, 69.0, 70.0)
+Gender <- c("F", "F", "F", "F", "M", "F", "F", "F", "M", "F", "M", "F", "M", "M", "M", "M", "F", "F", "M", "F", "F", "M", "M", "F", "M", "M", "M", "M")
+shoe_data1 <- data.frame(Shoe_Size,Height, Gender)
+```
+
+1. The table below shows the data about shoe size and height. Create a data frame.
+
+#a. Describe the data.
+The data is consist of different shoe sizes along with its height and gender of the user.
+
+#b. Create a subset by males and females with their corresponding shoe size and height.
+What its result? Show the R scripts.
+
+```{r}
+str(shoe_data1)
+male_subset <- shoe_data1[shoe_data1$Gender == "M",]
+female <- shoe_data1[shoe_data1$Gender == "F",]
+print("Male_subset")
+print(male_subset)
+print("Female Susbet")
+female
+```
+
+c. Find the mean of shoe size and height of the respondents. Write the R scripts and its result.
+
+```{r}
+Shoe_Size <- c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5, 13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 8.5, 10.5, 8.5, 10.5, 11.0, 9.0, 13.0)
+Height <- c(66.0, 68.0, 64.5, 65.0, 70.0, 64.0, 70.0, 71.0, 72.0, 64.0, 74.75, 67.0, 71.0, 71.0, 77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 69.0, 72.0, 70.0, 69.0, 70.0)
+mean_shoe_size <- mean(Shoe_Size)
+mean_height <- mean(Height)
+mean_shoe_size
+mean_height
+```
+
+
+d. Is there a relationship between shoe size and height? Why?
+
+```{r}
+correlation <- cor(shoe_data1$Shoe_Size, shoe_data1$Height, use = "complete.obs")
+print(paste("Correlation between Shoe Size and Height:", correlation))
+```
+
+2. Construct character vector months to a factor with factor() and assign the result to
+factor_months_vector. Print out factor_months_vector and assert that R prints out
+the factor levels below the actual values.
+Consider data consisting of the names of months:
+"March","April","January","November","January",
+"September","October","September","November","August",
+"January","November","November","February","May","August", "July","December","August","August","September","November","February",
+April")
+
+```{r}
+months <- c("March", "April", "January", "November", "January",
+            "September", "October", "September", "November", "August",
+            "January", "November", "November", "February", "May", "August",
+            "July", "December", "August", "August", "September", "November", 
+            "February", "April")
+factor_months_vector <- factor(months)
+
+print(factor_months_vector)
+print(levels(factor_months_vector))
+```
+3. Then check the summary() of the months_vector and factor_months_vector. | Inter-pret the results of both vectors. Are they both equally useful in this case?
+
+```{r}
+factor_months <- factor(months)
+summary(months)
+summary(factor_months)
+```
+4. Create a vector and factor for the table below.
+
+```{r}
+direction <- c("East", "West", "North")
+frequency <- c(1, 4, 3)
+factor_data <- factor(direction, levels = c("East", "West", "North"))
+print(factor_data)
+
+new_order_data <- factor(factor_data, levels = c("East", "West", "North"))
+print(new_order_data)
+```
+
+5. 
+
+```{r}
+write.csv("import_march.csv", row.names = FALSE)
+data <- read.table("import_march.csv", header = TRUE, sep = ",")
+```
