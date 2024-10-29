@@ -1,0 +1,240 @@
+---
+title: "RWorksheet_4B"
+author: "Kathrina Casandra Sison"
+date: "2024-10-29"
+output: html_document
+---
+
+
+```{r}
+#1
+vectorA <- c(1, 2, 3, 4, 5)
+matrix_result <- matrix(0, nrow = 5, ncol = 5)
+for (i in 1:5) {
+  for (j in 1:5) {
+    matrix_result[i, j] <- abs(vectorA[i] - vectorA[j])
+  }
+}
+print(matrix_result)
+
+```
+
+```{r}
+#2
+num_rows <- 5
+for (i in 1:num_rows) {
+  for (j in 1:i) {
+    cat("*")
+  }
+  cat("\n")  
+}
+
+```
+
+```{r}
+#3
+num <- as.integer(readline(prompt = "Enter the starting number for Fibonacci sequence: "))
+if (is.na(num)) {
+  cat("Please enter a valid integer.\n")
+} else {
+  c <- 0
+  d <- 1
+  repeat {
+    fib <- c + d
+    if (fib > 500) {
+      break
+    }
+    if (!is.na(fib) && fib >= num) {
+      cat(fib, "\n")
+    }
+    c <- d
+    d <- fib
+  }
+}
+
+```
+
+```{r}
+#4A
+data_file <- read.csv(file = "data.csv",header = T, stringsAsFactors = F,sep = ",")
+data_file
+data_file$Shoe.Size[1:6]
+```
+```{r}
+#4B
+male_count_gender <- sum(data_file$Gender == "M")
+female_count_gender <- sum(data_file$Gender == "F")
+male_count_gender1 <- sum(data_file$Gender.1 == "M")
+female_count_gender1 <- sum(data_file$Gender.1 == "F")
+total_males <- male_count_gender + male_count_gender1
+total_females <- female_count_gender + female_count_gender1
+cat("Total number of males:", total_males, "\n")
+cat("Total number of females:", total_females)
+
+```
+
+```{r}
+#4c
+household_data <- data.frame(
+  Gender = c("Male", "Female"),
+  Count = c(5, 5)
+)
+ggplot(household_data, aes(x = Gender, y = Count, fill = Gender)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Male" = "blue", "Female" = "red")) +
+  labs(title = "Number of Males and Females in Household Data",
+       x = "Gender",
+       y = "Count") +
+  theme_minimal() +
+  theme(legend.position = "top")
+
+```
+
+```{r}
+#5
+categories <- c("Food", "Electricity", "Savings", "Miscellaneous")
+expense <- c(60, 10, 5, 25)
+percentages <- round((expense / sum(expense)) * 100)
+colors <- c("blue", "green", "red", "yellow")
+pie(percentages, 
+    labels = paste(categories, percentages, "%"),
+    col = colors, 
+    main = "Monthly Income Expense of Dela Cruz Family")
+```
+
+```{r}
+#6
+data("iris")
+str("iris")
+```
+
+```{r}
+#6B
+data(iris)
+mean_values <- colMeans(iris[, 1:4])  
+print(mean_values)
+
+```
+
+```{r}
+#6C
+data(iris)
+species_counts <- table(iris$Species)
+colors <- c("blue", "green", "red")
+pie(species_counts,
+    labels = paste(names(species_counts), "\n", species_counts), 
+    col = colors,
+    main = "Species Distribution in Iris Dataset")
+legend("topright", legend = names(species_counts), fill = colors)
+
+```
+
+```{r}
+#6D
+data(iris)
+setosa <- subset(iris, Species == "setosa")
+versicolor <- subset(iris, Species == "versicolor")
+virginica <- subset(iris, Species == "virginica")
+cat("Last 6 rows of Setosa:\n")
+print(tail(setosa, 6))
+cat("\nLast 6 rows of Versicolor:\n")
+print(tail(versicolor, 6))
+cat("\nLast 6 rows of Virginica:\n")
+print(tail(virginica, 6))
+
+```
+
+```{r}
+#6E
+data(iris)
+iris$Species <- as.factor(iris$Species)
+colors <- c("red", "green", "blue")
+pch_values <- c(16, 17, 18) 
+plot(iris$Sepal.Length, iris$Sepal.Width,
+     col = colors[iris$Species],  
+     pch = pch_values[iris$Species],
+     main = "Iris Dataset",
+     sub = "Sepal Width and Length",
+     xlab = "Sepal Length",
+     ylab = "Sepal Width")
+legend("topright", legend = levels(iris$Species), 
+       col = colors, pch = pch_values, 
+       title = "Species")
+
+```
+
+```{r}
+#6F
+"The scatter plot reveals that the three iris species—Setosa, Versicolor, and Virginica—form distinct clusters based on their sepal lengths and widths. Setosa (red circles) has the smallest dimensions, while Virginica (blue squares) has the largest. Versicolor (green triangles) falls in between. This clear separation indicates that sepal measurements effectively distinguish between the species, and there is a positive relationship between sepal length and width across all species"
+```
+
+```{r}
+#7A
+library(readxl)
+data1 <- read_excel("C:/Users/Admin/Downloads/alexa_file.xlsx")
+View(data1)
+
+
+data1$variation <- gsub("Black\\s+Dot", "Black Dot", data1$variation)
+data1$variation <- gsub("Black\\s+Plus", "Black Plus", data1$variation)
+data1$variation <- gsub("Black\\s+Show", "Black Show", data1$variation)
+data1$variation <- gsub("Black\\s+Spot", "Black Spot", data1$variation)
+data1$variation <- gsub("White\\s+Dot", "White Dot", data1$variation)
+data1$variation <- gsub("White\\s+Plus", "White Plus", data1$variation)
+data1$variation <- gsub("White\\s+Show", "White Show", data1$variation)
+data1$variation <- gsub("White\\s+Spot", "White Spot", data1$variation)
+
+
+table(data1$variation)
+```
+
+
+```{r}
+#7B
+library(dplyr)
+
+variations_count <- data1 %>%
+  count(variation, name = "Total")
+save(variations_count, file = "variations.RData")
+print(variations_count)
+
+```
+
+```{r}
+#7C
+library(ggplot2)
+
+load("variations.RData")
+
+
+ggplot(variations_count, aes(x = variation, y = Total, fill = variation)) +
+  geom_bar(stat = "identity") +
+  ggtitle("Total of Alexa Variations") +
+  xlab("Variation") +
+  ylab("Total Numbers") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_brewer(palette = "Set3")
+
+
+```
+
+```{r}
+#7D
+variations_count$Category <- ifelse(grepl("Black", variations_count$variation), "Black Variants", 
+ifelse(grepl("White", variations_count$variation), "White Variants", NA))
+
+black_white_variants <- variations_count %>% filter(!is.na(Category))
+
+
+ggplot(black_white_variants, aes(x = variation, y = Total, fill = variation)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~ Category, scales = "free_x") +  
+  ggtitle("Counts of Alexa Black and White Variants") +
+  xlab("Variation") +
+  ylab("Total Numbers") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  scale_fill_brewer(palette = "Set2") 
+```
+
